@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'MyCustomFont'; /* A name you choose to use later */
-  src: url('../font/eras-itc-demi.ttf') format('ttf'); /* Path to your font file */
+  src: url('../font/eras-itc-demi.ttf') format('truetype'); /* Path to your font file */
 }
 
 
 nav {
-    background-color: #d3d2e0;
+    background-color: #000000;
     /* padding: 30px; */
     display: flex;
     align-items: center;
@@ -37,11 +37,28 @@ ul li {
 }
 
 ul li a {
-    color: rgb(29, 29, 29);
+    color: rgba(255, 255, 255);
     font-family: 'Arial';
-    font-size: 16px
+    font-size: 16px;
+    position: relative;
+    text-decoration: none;
+}
 
-    
+#anim::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+#anim:hover::after {
+    transform: scaleX(1);
 }
 
 
@@ -74,24 +91,43 @@ font-size: 17.5px;
 }
 
 #index1{
-    width: 100%;
-    /* height: 300px; */
-    /* display: flex; */
+    /* width: 100%;  */
+    /* border: 3px solid; */
+    border-color: #000000;
 
-    flex: 1;
+    /* flex: 1; */
     
     /* background-image: url(../img/happyman.png) */
     
     
 }
 
-#index1text{
+#index1text1{
     
     display: grid;
     place-items: center;
     height: 50px;
     font-family: 'MyCustomFont';
+    color: white;
+    padding-left: 60px;
+    font-size: 40px;
     
+}#index1text2{
+    
+    display: grid;
+    place-items: center;
+    height: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    color: white;
+    font-size: 18px;
+    padding-left: 66px;
+    
+}
+
+#index1textdiv{
+    padding-top: 150px;
+    padding-right: 900px;
 }
 
 #grafisk{
@@ -131,6 +167,11 @@ body {
 
 #index1 {
     flex: 1;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../img/happymen.jpg);
+    background-size: 100%;
+    background-position: 0px 850px;
 }
 
 footer {
@@ -152,47 +193,95 @@ margin-right: 300px;
 }
 
 button{
-height: 50px;
-width: 150px;
-background-color: white;
-border: 0;
-border-radius: 100px;
-color:  #000000;
-font-family: 'Arial';
-gap: 5px;
-margin: 5px;
+    height: 50px;
+    width: 150px;
+    background-color: white;
+    border: 0px;
+    border-radius: 100px;
+    color:  #000000;
+    font-family: 'Arial';
+    gap: 5px;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
 
+button:hover {
+    transform: translateY(-2px);
+    background-color: #e6e6e6;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    color: white;
 
 }
+
+#buttonplay{
+    height: 50px;
+    width: 150px;
+    background-color: rgb(137, 166, 255);
+    border: 0px;
+    border-radius: 100px;
+    color:  #ffffff;
+    font-family: 'Arial';
+    gap: 5px;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#buttonplay:hover {
+    transform: translateY(-2px);
+    background-color: rgb(109, 119, 209);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    color: white;
+}
+
+
+
+
+
 
 a{
         font-family: 'Arial';
         color: #000000;
 }
 
-#name-input {
+#name-input{
     text-align: center;
     margin: 20px;
 }
 
-#results-display {
+#results-display{
     margin-bottom: 20px;
 }
 
-#results-display h3 {
+#results-display h3{
     margin: 0 0 10px 0;
     font-size: 18px;
 }
 
-#results-display ul {
+#results-display ul{
     list-style-type: none;
     padding: 0;
 }
 
-#results-display li {
+#results-display li{
     background-color: #f0f0f0;
     margin: 5px 0;
     padding: 5px;
     border-radius: 5px;
 }
+
+#herobuttons{
+    padding-top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 270px;
+    padding-top: 10px;
+    padding-right: 900px;
+    padding-left: 40px;
+}
+
+
 
