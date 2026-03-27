@@ -81,7 +81,7 @@ const quizData = [
     correctAnswer: "Gjentatt negativ atferd mot en person over tid",
   },
   {
-    question: "11. Velg en video å se:",
+    question: "11. Hva er en riktig metode til å feste en hjul?",
     options: ["1", "2", "3", "Ingen av videoene"],
     videos: [
       "https://www.youtube.com/embed/BwOV6zNckSU",
@@ -267,7 +267,6 @@ window.addEventListener("DOMContentLoaded", () => {
                 backButton.textContent = "Resultater/Spill igjen";
                 backButton.style.marginTop = "20px";
                 backButton.addEventListener("click", () => {
-                  // Reset quiz state
                   currentQuestionIndex = 0;
                   score = 0;
                   nameInput.style.display = "block";
@@ -276,17 +275,13 @@ window.addEventListener("DOMContentLoaded", () => {
                   option1.style.display = "none";
                   option2.style.display = "none";
                   option3.style.display = "none";
-                  // Remove video container if it exists
                   const existingVideoContainer = document.getElementById("video-container");
                   if (existingVideoContainer) {
                       existingVideoContainer.remove();
                   }
-                  // Remove the back button
                   backButton.remove();
-                  // Refresh results display
                   displayLatestResults();
                 });
-                // Append button after the question
                 question.parentNode.insertBefore(backButton, question.nextSibling);
             }
         }, 1000);
