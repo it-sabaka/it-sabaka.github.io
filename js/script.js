@@ -80,6 +80,16 @@ const quizData = [
     ],
     correctAnswer: "Gjentatt negativ atferd mot en person over tid",
   },
+  {
+    question: "11. Velg en video å se:",
+    options: ["1", "2", "3", "Ingen av videoene"],
+    videos: [
+      "https://www.youtube.com/embed/BwOV6zNckSU",
+      "https://www.youtube.com/embed/Eu812CHxbRk",
+      "https://www.youtube.com/embed/mAkR76jdR6E"
+    ],
+    correctAnswer: "1",
+  },
 ];
 
 
@@ -120,12 +130,12 @@ window.addEventListener("DOMContentLoaded", () => {
   function displayLatestResults() {
     const results = JSON.parse(localStorage.getItem("quizResults") || "[]");
     if (results.length === 0) {
-      resultsDisplay.innerHTML = "<p>Spill til å se resultater!</p>";
+      resultsDisplay.innerHTML = "<p style='font-family: Arial, sans-serif;'>Spill til å se resultater!</p>";
       return;
     }
     // Show the last 5 results or all if less, sorted by score descending
     const latestResults = results.slice(-5).sort((a, b) => b.score - a.score);
-    let html = "<h3>Top 5 best spillerne:</h3><ul>";
+    let html = "<h3 style='font-family: Arial, sans-serif;'>Top 5 best spillerne:</h3><ul>";
     latestResults.forEach(result => {
       html += `<li>${result.name}: ${result.score}/${quizData.length}</li>`;
     });
@@ -164,10 +174,38 @@ window.addEventListener("DOMContentLoaded", () => {
       const currentQuestion = quizData[currentQuestionIndex];
       if (!currentQuestion) return;
       question.textContent = currentQuestion.question;
-      option0.textContent = currentQuestion.options[0];
-      option1.textContent = currentQuestion.options[1];
-      option2.textContent = currentQuestion.options[2];
-      option3.textContent = currentQuestion.options[3];
+      
+      const buttons = [option0, option1, option2, option3];
+      
+      // Remove existing video container if present
+      const existingVideoContainer = document.getElementById("video-container");
+      if (existingVideoContainer) {
+        existingVideoContainer.remove();
+      }
+      
+      // If this question has videos, display them separately
+      if (currentQuestion.videos && currentQuestion.videos.length > 0) {
+        const videoContainer = document.createElement("div");
+        videoContainer.id = "video-container";
+        videoContainer.style.cssText = "display: flex; flex-direction: row; gap: 15px; margin: 20px 0; width: 100%; max-width: 1200px; justify-content: center; align-items: flex-start;";
+        
+        currentQuestion.videos.forEach((videoUrl, index) => {
+          const videoWrapper = document.createElement("div");
+          videoWrapper.style.cssText = "text-align: center; flex: 1; min-width: 0;";
+          videoWrapper.innerHTML = `<iframe width="100%" height="260" src="${videoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="aspect-ratio: 9/16;"></iframe>`;
+          videoContainer.appendChild(videoWrapper);
+        });
+        
+        // Insert before the options container
+        const optionsDiv = document.getElementById("options");
+        optionsDiv.parentNode.insertBefore(videoContainer, optionsDiv);
+      }
+      
+      buttons.forEach((btn, index) => {
+        const optionContent = currentQuestion.options[index];
+        // For video questions, show just the text (1, 2, 3, etc)
+        btn.textContent = optionContent;
+      });
       
       option0.onclick = () => checkAnswer(currentQuestion.options[0]);
       option1.onclick = () => checkAnswer(currentQuestion.options[1]);
@@ -181,7 +219,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if (!currentQuestion) return;
         
         const buttons = [option0, option1, option2, option3];
-        const selectedButton = buttons.find(btn => btn.textContent === selectedOption);
+        const selectedButton = buttons.find((btn, index) => currentQuestion.options[index] === selectedOption);
         
         if (selectedOption === currentQuestion.correctAnswer) {
             score++;
@@ -212,6 +250,12 @@ window.addEventListener("DOMContentLoaded", () => {
                 option2.style.display = "none";
                 option3.style.display = "none";
                 
+                // Remove video container if it exists
+                const existingVideoContainer = document.getElementById("video-container");
+                if (existingVideoContainer) {
+                    existingVideoContainer.remove();
+                }
+                
                 let names = JSON.parse(localStorage.getItem("quizNames") || "[]");
                 let lastName = names[names.length - 1] || "Anonymous";
                 let results = JSON.parse(localStorage.getItem("quizResults") || "[]");
@@ -232,6 +276,11 @@ window.addEventListener("DOMContentLoaded", () => {
                   option1.style.display = "none";
                   option2.style.display = "none";
                   option3.style.display = "none";
+                  // Remove video container if it exists
+                  const existingVideoContainer = document.getElementById("video-container");
+                  if (existingVideoContainer) {
+                      existingVideoContainer.remove();
+                  }
                   // Remove the back button
                   backButton.remove();
                   // Refresh results display
