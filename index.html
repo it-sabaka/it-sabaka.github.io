@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momnica Store</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <script defer src="./js/script.js"></script>
+</head>
+<body>
+    <div class="top-bar">
+        <button id="themeToggle" class="secondary">Dark mode</button>
+    </div>
+
+    <div class="welcome-page" id="welcomePage">
+        <div class="hero-card">
+            <div class="hero-content">
+                <h1>🎉Gratulerer!🎉</h1>
+                <p>
+Hi Monica, happy birthday to you!! I think you’re a very good teacher, not only that, you’re also a very nice person that you can talk with. With you, learning is fun. You’re caring, and you notice your students. Hope you had a very good day, because it’s your day!
+</p>             <p>
+My gift for you is a platinum card with unlimited amount of money!!
+Spend it as you wish in MONICA1000 online supermarket!
+
+</p>
+                <button id="openStoreBtn" class="primary">Open MONICA1000</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="store-page hidden" id="storePage">
+        <header class="store-header">
+            <div>
+                <h1>MONICA1000</h1>
+                <p class="subtitle">En helt vanlig butikk. Ikke noe rar.</p>
+            </div>
+            <div class="status-panel">
+                <div class="status-card">
+                    <span>Balance</span>
+                    <strong>∞</strong>
+                </div>
+                <div class="status-card highlighted">
+                    <span>Total Spent</span>
+                    <strong id="totalSpent">$0.00</strong>
+                </div>
+                <button id="backHomeBtn" class="secondary">Back to Welcome</button>
+            </div>
+        </header>
+
+        <main class="categories">
+            <section class="category">
+                <div class="category-header">
+                        <h2>Mat</h2>
+                    <p>Matsaker og snacks.</p>
+                </div>
+                <div class="item-grid" id="matGrid"></div>
+            </section>
+
+            <section class="category">
+                <div class="category-header">
+                    <h2>Annet</h2>
+                    <p>Tjenester, selskaper og større gjenstander.</p>
+                </div>
+                <div class="item-grid" id="annetGrid"></div>
+            </section>
+
+            <section class="category">
+                <div class="category-header">
+                    <h2>Elektronikk</h2>
+                    <p>Telefoner, datamaskiner og elektroniske hjelpemidler.</p>
+                </div>
+                <div class="item-grid" id="elektronikkGrid"></div>
+            </section>
+        </main>
+        <section class="receipt-section" id="receiptSection">
+            <div class="receipt-header">
+                <h2>Receipt</h2>
+                <p>Summary of all items you purchased. Click a purchased button again to remove it.</p>
+            </div>
+            <div class="receipt-card">
+                <div class="receipt-summary">
+                    <span id="receiptCount">0 items purchased</span>
+                    <strong id="receiptTotal">$0.00</strong>
+                </div>
+                <ul class="receipt-list" id="receiptList">
+                    <li class="receipt-empty">No purchases yet.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
